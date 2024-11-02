@@ -20,7 +20,7 @@ module tt_um_control_block (
 
 // Assign the inputs to wires
 wire [3:0] opcode = ui_in [3:0];
-assign uio_oe = 8'h0;    // Configure the bidirectional pins to be all outputs
+assign uio_oe = 8'hff;    // Configure the bidirectional pins to be all outputs
 
 /* Supported Instructions' Opcodes */
 localparam OP_HLT = 4'h0;
