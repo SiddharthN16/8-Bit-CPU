@@ -59,16 +59,22 @@ parameter T0 = 0, T1 = 1, T2 = 2, T3 = 3, T4 = 4, T5 = 5;
 
 /* Stage Transition Logic */
 always @(negedge clk) begin
-    if (!rst_n) begin           // Check if reset is asserted, if yes, put into a holding stage
+    if (!resetn) begin           // Check if reset is asserted, if yes, put into a holding stage
       stage <= 6;
     end
  	else begin                   // If reset is not asserted, do the stages sequentially
       if (stage == 6) begin        
           stage <= 0;
-      end 
-      else begin
-          stage <= stage + 1;
-      end
+        end 
+        else if (stage == T0 || stage == T1 || 
+                 stage == T2 || stage == T3 || 
+                 stage == T4 || stage == T5) begin
+            // Valid stages
+            stage <= stage + 1; // Increment to the next stage
+        end else begin
+            // If the stage is not valid, set it to 6
+            stage <= 6; // Set to stage 6 
+        end
     end
 end
 
