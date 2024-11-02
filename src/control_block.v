@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Siddharth Nema
+ * Copyright (c) 2024 Siddharth Nema & Gerry Chen
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -58,7 +58,7 @@ reg [14:0] control_signals;
 parameter T0 = 0, T1 = 1, T2 = 2, T3 = 3, T4 = 4, T5 = 5; 
 
 /* Stage Transition Logic */
-always @(negedge clk) begin
+always @(posedge clk) begin
     if (!rst_n) begin           // Check if reset is asserted, if yes, put into a holding stage
       stage <= 6;
     end
