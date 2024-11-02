@@ -24,6 +24,12 @@ module tb ();
    wire [7:0] uio_in;
   
   tt_um_control_block uut(
+     // Include power ports for the Gate Level test:
+      `ifdef GL_TEST
+            .VPWR(1'b1),
+            .VGND(1'b0),
+      `endif
+     
     .clk(clk), 
     .rst_n(resetn),
     .ui_in({4'b0000, opcode}),
