@@ -10,12 +10,12 @@ async def test_project(dut):
     cocotb.start_soon(clock.start())
     # Reset
     await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 1
+    dut.resetn.value = 1
     await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 0
+    dut.resetn.value = 0
     dut._log.info("Reset")
     await ClockCycles(dut.clk, 1000)
-    dut.rst_n.value = 1
+    dut.resetn.value = 1
     dut._log.info("Test NOP")
     dut.ui_in.value = 1
     await ClockCycles(dut.clk, 1000)
